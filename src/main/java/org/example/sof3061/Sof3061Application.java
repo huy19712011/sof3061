@@ -6,8 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Sof3061Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Sof3061Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Sof3061Application.class, args);
+        System.out.println("running...");
+    }
 
 }
