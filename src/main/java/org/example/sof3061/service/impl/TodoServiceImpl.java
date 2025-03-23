@@ -3,6 +3,7 @@ package org.example.sof3061.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.sof3061.dto.TodoDto;
 import org.example.sof3061.entity.Todo;
+import org.example.sof3061.exception.ResourceNotFoundException;
 import org.example.sof3061.repository.TodoRepository;
 import org.example.sof3061.service.TodoService;
 import org.modelmapper.ModelMapper;
@@ -44,5 +45,18 @@ public class TodoServiceImpl implements TodoService {
 
         //
         return savedTodoDto;
+    }
+
+    @Override
+    public TodoDto getTodo(long id) {
+
+        //Todo todo = todoRepository.findById(id).get();
+        
+        Todo todo = todoRepository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Todo not found with id: " + id));
+
+
+        return modelMapper.map(todo, TodoDto.class);
     }
 }

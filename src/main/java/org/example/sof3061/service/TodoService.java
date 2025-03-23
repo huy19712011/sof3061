@@ -5,4 +5,6 @@ import org.example.sof3061.dto.TodoDto;
 public interface TodoService {
 
     TodoDto addTodo(TodoDto todoDto);
+
+    TodoDto getTodo(long id);
 }
