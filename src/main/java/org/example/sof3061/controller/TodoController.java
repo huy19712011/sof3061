@@ -1,5 +1,6 @@
 package org.example.sof3061.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.sof3061.dto.TodoDto;
 import org.example.sof3061.service.TodoService;
@@ -17,7 +18,7 @@ public class TodoController {
     private final TodoService todoService;
 
     @PostMapping
-    public ResponseEntity<TodoDto> addTodo(@RequestBody TodoDto todoDto) {
+    public ResponseEntity<TodoDto> addTodo(@Valid @RequestBody TodoDto todoDto) {
 
         TodoDto savedTodoDto = todoService.addTodo(todoDto);
 
