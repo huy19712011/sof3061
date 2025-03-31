@@ -6,6 +6,7 @@ import org.example.sof3061.dto.TodoDto;
 import org.example.sof3061.service.TodoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class TodoController {
 
     private final TodoService todoService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<TodoDto> addTodo(@Valid @RequestBody TodoDto todoDto) {
 
@@ -25,6 +27,7 @@ public class TodoController {
         return new ResponseEntity<TodoDto>(savedTodoDto, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("{id}")
     public ResponseEntity<TodoDto> getTodo(@PathVariable("id") long todoId) {
 
@@ -33,6 +36,7 @@ public class TodoController {
         return new ResponseEntity<>(todoDto, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping
     public ResponseEntity<List<TodoDto>> getAllTodos() {
 
@@ -42,6 +46,7 @@ public class TodoController {
         return ResponseEntity.ok(todos);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("{id}")
     public ResponseEntity<TodoDto> updateTodo(@RequestBody TodoDto todoDto, @PathVariable("id") long todoId) {
 
@@ -50,6 +55,7 @@ public class TodoController {
         return ResponseEntity.ok(updateTodo);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTodo(@PathVariable("id") long todoId) {
 
