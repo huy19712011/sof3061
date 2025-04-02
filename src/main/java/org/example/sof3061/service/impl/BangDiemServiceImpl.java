@@ -53,4 +53,29 @@ public class BangDiemServiceImpl implements BangDiemService {
 
         return modelMapper.map(bangDiem, BangDiemDto.class);
     }
+
+    @Override
+    public BangDiemDto updateBangDiem(BangDiemDto bangDiemDto, long id) {
+
+        BangDiem bangDiem = bangDiemRepository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("BangDiem not found with id: " + id));
+
+        bangDiem.setDiemSo(bangDiemDto.getDiemSo());
+
+        BangDiem updatedBangDiem = bangDiemRepository.save(bangDiem);
+
+        return modelMapper.map(updatedBangDiem, BangDiemDto.class);
+
+    }
+
+    @Override
+    public void deleteBangDiem(long id) {
+
+        BangDiem bangDiem = bangDiemRepository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("BangDiem not found with id: " + id));
+
+        bangDiemRepository.deleteById(id);
+    }
 }
