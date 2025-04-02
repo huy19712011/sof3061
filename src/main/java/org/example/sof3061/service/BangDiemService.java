@@ -8,4 +8,6 @@ import java.util.List;
 public interface BangDiemService {
 
     List<BangDiemDto> getAllBangDiem();
+
+    BangDiemDto getBangDiem(long id);
 }
