@@ -18,7 +18,7 @@ public class TodoController {
 
     private final TodoService todoService;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<TodoDto> addTodo(@Valid @RequestBody TodoDto todoDto) {
 
@@ -27,7 +27,7 @@ public class TodoController {
         return new ResponseEntity<TodoDto>(savedTodoDto, HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("{id}")
     public ResponseEntity<TodoDto> getTodo(@PathVariable("id") long todoId) {
 
@@ -36,7 +36,7 @@ public class TodoController {
         return new ResponseEntity<>(todoDto, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping
     public ResponseEntity<List<TodoDto>> getAllTodos() {
 
@@ -46,7 +46,7 @@ public class TodoController {
         return ResponseEntity.ok(todos);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @PutMapping("{id}")
     public ResponseEntity<TodoDto> updateTodo(@RequestBody TodoDto todoDto, @PathVariable("id") long todoId) {
 
@@ -55,7 +55,7 @@ public class TodoController {
         return ResponseEntity.ok(updateTodo);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTodo(@PathVariable("id") long todoId) {
 
