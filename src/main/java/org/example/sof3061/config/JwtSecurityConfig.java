@@ -37,7 +37,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class JwtSecurityConfig {
 
-    private JwtDecoder jwtDecoder;
+    //private JwtDecoder jwtDecoder;
 
     private final UserDetailsService userDetailsService; // => will use CustomUserDetailService
 
@@ -69,7 +69,7 @@ public class JwtSecurityConfig {
                 .oauth2ResourceServer(oauth2 ->
                         oauth2.jwt(jwt -> {
                             jwt.jwtAuthenticationConverter(jwtAuthenticationConverter());
-                            jwt.decoder(jwtDecoder);
+                            //jwt.decoder(jwtDecoder);
                         }));
 
 
@@ -148,7 +148,7 @@ public class JwtSecurityConfig {
 
         JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         grantedAuthoritiesConverter.setAuthorityPrefix("");
-        grantedAuthoritiesConverter.setAuthoritiesClaimName("scopes");
+        grantedAuthoritiesConverter.setAuthoritiesClaimName("scope");
 
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
