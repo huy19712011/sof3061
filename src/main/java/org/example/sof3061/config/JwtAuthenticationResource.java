@@ -18,7 +18,7 @@ public class JwtAuthenticationResource {
 
     private final JwtEncoder jwtEncoder;
 
-    @PostMapping("/authenticate")
+    @PostMapping("/api/authenticate")
     public JwtResponse authenticate(Authentication authentication) {
 
         return new JwtResponse(createToken(authentication));
