@@ -54,6 +54,9 @@ public class JwtSecurityConfig {
                 .csrf(csrfConfigurer -> csrfConfigurer.disable())
                 .authorizeHttpRequests(authorize -> {
 
+                    // only for testing different roles in (authorization + jwt)
+                    authorize.requestMatchers(HttpMethod.POST, "/api/authenticate/**").hasAnyRole("ADMIN", "USER");
+
                     authorize.requestMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN");
                     authorize.requestMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN");
                     authorize.requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN");
